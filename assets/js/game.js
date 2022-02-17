@@ -26,13 +26,16 @@ var fightOrSkip = function() {
         // subtract money from playerInfo.money for skipping
         playerInfo.money = Math.max(0, playerInfo.money - 10);
         console.log("playerInfo.money", playerInfo.money)
-        break;
       }
     }
   }
 
 // fight function (now with parameter for enemy's object holding name, health, and attack values)
 var fight = function(enemy) {
+  var isPlayerturn = true;
+  if (Math.random() > 0.5) {
+    isPlayerturn = false;
+  }
   while (playerInfo.health > 0 && enemy.health > 0) {
     fightOrSkip();
   }
@@ -76,6 +79,9 @@ var fight = function(enemy) {
       window.alert(playerInfo.name + ' still has ' + playerInfo.health + ' health left.');
     }
   }
+  isPlayerturn = !isPlayerturn;
+}
+};
 
 // function to start a new game
 var startGame = function() {
